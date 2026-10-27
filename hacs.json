@@ -1,0 +1,6 @@
+{
+  "name": "Everything Presence Floor Plan Card",
+  "filename": "everything-presence-floorplan-card.js",
+  "render_readme": true,
+  "homeassistant": "2024.8.0"
+}

@@ -1,0 +1,37 @@
+<!doctype html><html><head><meta charset="utf-8"><style>body{margin:0;padding:16px;background:var(--bg);font-family:Roboto,sans-serif} .wrap{display:flex;gap:16px;flex-wrap:wrap} .c{width:460px}
+ha-card{display:block;background:var(--card-background-color);border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,.2)}</style></head>
+<body><div class="wrap"><div class="c" id="a"></div><div class="c" id="b"></div></div>
+<script>
+const dark = location.hash.includes('dark');
+const root = document.documentElement.style;
+if (dark) { root.setProperty('--bg','#111'); root.setProperty('--card-background-color','#1c1c1c'); root.setProperty('--primary-text-color','#e1e1e1'); root.setProperty('--secondary-text-color','#9b9b9b'); root.setProperty('--secondary-background-color','#2a2a2a'); }
+else { root.setProperty('--bg','#f0f0f0'); root.setProperty('--card-background-color','#fff'); }
+window.calls = [];
+const mk = (id, state, attrs={}) => ({entity_id:id, state:String(state), attributes:attrs});
+const p = 'kitchen_everything_presence_lite';
+window.makeHass = (targets) => {
+  const states = {};
+  const entities = {};
+  for (let n=1;n<=3;n++){
+    const t = targets[n-1] || [0,0,false];
+    states[`sensor.${p}_target_${n}_x`] = mk(`sensor.${p}_target_${n}_x`, t[0], {unit_of_measurement:'mm'});
+    states[`sensor.${p}_target_${n}_y`] = mk(`sensor.${p}_target_${n}_y`, t[1], {unit_of_measurement:'mm'});
+    states[`binary_sensor.${p}_target_${n}_active`] = mk(`binary_sensor.${p}_target_${n}_active`, t[2]?'on':'off');
+  }
+  states[`binary_sensor.${p}_occupancy`] = mk(`binary_sensor.${p}_occupancy`, targets.some(t=>t[2])?'on':'off');
+  states[`binary_sensor.${p}_zone_1_occupancy`] = mk(`binary_sensor.${p}_zone_1_occupancy`, 'off');
+  for (const id of Object.keys(states)) entities[id] = {entity_id:id, device_id:'dev1'};
+  return { states, entities, callWS: async (msg) => { calls.push(msg);
+      if (msg.endpoint.endsWith('/info')) return {slug:'x', ingress_url:'/api/hassio_ingress/TOKEN/'};
+      if (msg.endpoint === '/ingress/session') return {session:'SESSION123'};
+      return {}; } };
+};
+</script>
+<script src="../everything-presence-floorplan-card.js"></script>
+<script>
+const a = document.createElement('everything-presence-floorplan-card');
+a.setConfig({type:'custom:everything-presence-floorplan-card', room:'Kitchen', show_zones: location.hash.includes('zones'), trail_seconds: 30});
+document.getElementById('a').appendChild(a);
+a.hass = makeHass([[ -800, 1500, true],[1200, 3200, true]]);
+window.card = a;
+</script></body></html>

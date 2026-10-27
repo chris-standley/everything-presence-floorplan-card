@@ -1,0 +1,18 @@
+{"rooms":[{"id":"r1","name":"Kitchen","deviceId":"dev1","profileId":"everything_presence_lite","units":"metric",
+"zones":[{"id":"Zone 1","type":"regular","x":-1500,"y":500,"width":3000,"height":2000,"enabled":true,"label":"Island"},{"id":"Exclusion 1","type":"exclusion","x":1200,"y":3000,"width":800,"height":800,"enabled":true}],
+"roomShell":{"points":[{"x":0,"y":0},{"x":5200,"y":0},{"x":5200,"y":4200},{"x":2600,"y":4200},{"x":2600,"y":5600},{"x":0,"y":5600}]},
+"roomShellFillMode":"material","floorMaterial":"wood-oak",
+"devicePlacement":{"x":2600,"y":0,"rotationDeg":0,"mountType":"wall"},
+"furniture":[
+{"id":"f1","typeId":"kitchen-island","x":2600,"y":2000,"width":2000,"depth":900,"height":900,"rotationDeg":0,"aspectRatioLocked":false},
+{"id":"f2","typeId":"sofa-3seat","x":1300,"y":4900,"width":2100,"depth":900,"height":800,"rotationDeg":180,"aspectRatioLocked":false},
+{"id":"f3","typeId":"dining-table-round","x":4100,"y":3300,"width":1100,"depth":1100,"height":750,"rotationDeg":0,"aspectRatioLocked":false},
+{"id":"f4","typeId":"refrigerator","x":4800,"y":450,"width":700,"depth":700,"height":1800,"rotationDeg":0,"aspectRatioLocked":false},
+{"id":"f5","typeId":"rug-medium-rect","x":1300,"y":4000,"width":2000,"depth":1400,"height":10,"rotationDeg":0,"aspectRatioLocked":false},
+{"id":"f6","typeId":"plant-large","x":300,"y":300,"width":450,"depth":450,"height":1200,"rotationDeg":0,"aspectRatioLocked":false},
+{"id":"f7","typeId":"bed-double","x":900,"y":1600,"width":1350,"depth":1900,"height":500,"rotationDeg":90,"aspectRatioLocked":false},
+{"id":"f8","typeId":"custom-ab12cd34","x":4600,"y":1800,"width":600,"depth":600,"height":500,"rotationDeg":0,"aspectRatioLocked":false}
+],
+"doors":[{"id":"d1","style":"single","segmentIndex":1,"positionOnSegment":0.25,"widthMm":850,"swingDirection":"in","swingSide":"left"},
+{"id":"d2","style":"sliding","segmentIndex":4,"positionOnSegment":0.5,"widthMm":1600,"swingDirection":"in","swingSide":"right"},
+{"id":"d3","style":"double","segmentIndex":5,"positionOnSegment":0.5,"widthMm":1400,"swingDirection":"in","swingSide":"left"}]}]}
